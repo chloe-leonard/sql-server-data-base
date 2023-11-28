@@ -1,6 +1,6 @@
 DROP DATABASE "TP_4";
 GO
-
+/*
 CREATE DATABASE "TP_4";
 GO
 
@@ -90,7 +90,7 @@ ALTER TABLE facture ADD FOREIGN KEY (devis_id) REFERENCES devis (id)
 GO
 
 
-
+*/
 /*
 Afficher les factures à partir d'un client_id
 

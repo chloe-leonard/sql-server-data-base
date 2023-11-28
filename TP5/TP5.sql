@@ -1,14 +1,14 @@
-DROP DATABASE "TP5_";
+/*DROP DATABASE "TP5_";
 GO
 
 
 CREATE DATABASE "TP5_";
 GO
-
+*/
 USE "TP5_";
 GO
 
-/*
+
 DROP TABLE equipe_has_personne;
 GO
 DROP TABLE equipe;
@@ -47,6 +47,13 @@ GO
 ALTER TABLE equipe_has_personne ADD FOREIGN KEY (personne_id) REFERENCES personne (id)
 GO
 
+DELETE 
+FROM equipe_has_personne;
+DELETE 
+FROM equipe;
+DELETE 
+FROM personne;
+GO
 
 INSERT INTO personne(prenom, nom) VALUES 
 ('Brad', 'Pitt'),
@@ -58,11 +65,6 @@ INSERT INTO personne(prenom, nom) VALUES
 ('Bob', 'Dylan'),
 ('Johnny', 'Cash'),
 ('Jimmy', 'Hendrix')
-
-
-
-DELETE 
-FROM equipe_has_personne;
 
 INSERT INTO equipe (nom, projet, personne_id) VALUES
 ('Team A','Projet site internet Mairie','1'),
@@ -85,7 +87,7 @@ INSERT INTO equipe_has_personne(personne_id, equipe_id) VALUES
 ('7','3'),
 ('8','3'),
 ('9','3')
-*/
+
 
 /*Affiche 1 equipe */
 SELECT  equipe.nom, equipe.projet, 
@@ -93,7 +95,7 @@ CONCAT(personne.prenom, personne.nom) AS chef_projet
 FROM equipe
 INNER JOIN personne ON equipe.personne_id=personne.id
 INNER JOIN equipe_has_personne ON equipe_has_personne.personne_id=personne.id
-WHERE equipe.id = 1;
+WHERE equipe_has_personne.equipe_id = 1;
 GO
 
 /*Affiche tous les equipes */
