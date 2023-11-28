@@ -68,14 +68,9 @@ INSERT INTO personne(prenom, nom) VALUES
 
 INSERT INTO equipe (nom, projet, personne_id) VALUES
 ('Team A','Projet site internet Mairie','1'),
-('Team A','Projet site internet Mairie','2'),
-('Team A','Projet site internet Mairie','3'),
 ('Team B','Projet CRM','4'),
-('Team B','Projet CRM','5'),
-('Team B','Projet CRM','6'),
-('Team C','Projet ERP','7'),
-('Team C','Projet ERP','8'),
-('Team C','Projet ERP','9')
+('Team C','Projet ERP','7')
+
 
 INSERT INTO equipe_has_personne(personne_id, equipe_id) VALUES 
 ('1','1'), 
@@ -91,17 +86,17 @@ INSERT INTO equipe_has_personne(personne_id, equipe_id) VALUES
 
 /*Affiche 1 equipe */
 SELECT  equipe.nom, equipe.projet, 
-CONCAT(personne.prenom, personne.nom) AS chef_projet
-FROM equipe
-INNER JOIN personne ON equipe.personne_id=personne.id
-INNER JOIN equipe_has_personne ON equipe_has_personne.personne_id=personne.id
+CONCAT(personne.prenom, personne.nom) AS Participant
+FROM equipe_has_personne
+INNER JOIN personne ON equipe_has_personne.personne_id=personne.id
+INNER JOIN equipe ON equipe_has_personne.equipe_id=equipe.id
 WHERE equipe_has_personne.equipe_id = 1;
 GO
 
 /*Affiche tous les equipes */
-SELECT  equipe.nom, equipe.projet, 
-CONCAT(personne.prenom, personne.nom) AS participant
-FROM equipe
-INNER JOIN personne ON equipe.personne_id=personne.id
-INNER JOIN equipe_has_personne ON equipe_has_personne.personne_id=personne.id;
+SELECT  equipe.nom, equipe.projet,
+CONCAT(personne.prenom, personne.nom) AS Participant
+FROM equipe_has_personne
+INNER JOIN personne ON equipe_has_personne.personne_id=personne.id
+INNER JOIN equipe ON equipe_has_personne.equipe_id=equipe.id
 GO
